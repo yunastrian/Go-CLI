@@ -42,7 +42,18 @@ ruby main.rb sample.txt
 
 ## Note
 This program save the trips history in the file named *history.txt*. <br>
-If it will run by passing a filename as parameter, put that file in **one directory** with *main.rb*
+If it will run by passing a filename as parameter, put that file in **one directory** with *main.rb*. <br>
+File input format :
+```
+{map size}
+{customer_coordinate_x},{customer_coordinate_y}
+{driver1_coordinate_x},{driver1_coordinate_y}
+{driver2_coordinate_x},{driver2_coordinate_y}
+{driver3_coordinate_x},{driver3_coordinate_y}
+.
+.
+.
+``` 
 
 ## Author
 [Kurniandha Sukma Yunastrian](https://github.com/yunastrian)
