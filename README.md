@@ -13,7 +13,7 @@ I created this program only in one file in *main.rb* and wrote it only in main p
 - View History
 
 ## How to Run
-There are **three ways** to execute this program :
+There are **three ways** to execute this program : <br>
 **1. Run without any parameters** <br>
 In this case, the app will generate a 20\*20 map, out 5 drivers at random coordinates, and put user at a random coordinate
 ```
