@@ -1,7 +1,11 @@
+#Author : Kurniandha Sukma Yunastrian
+
 #Main Program
 parameter = ARGV
 
-driver_name = Array.new
+f = File.open("history.txt", "w")
+    f.puts ""
+f.close
 driver_position_X = Array.new
 driver_position_Y = Array.new
 if parameter.length == 0
@@ -111,51 +115,83 @@ loop do
 			end
 		end
 		
+		direction = Array.new
+		customer_start_X = customer_position_X
+		customer_start_Y = customer_position_Y
 		check = 0
 		price = 300*((destination_X-customer_position_X).abs + (destination_Y-customer_position_Y).abs)
 		puts "Driver Name : Andy"
 		puts "Price estimation : #{price}"
 		puts "Route : "
         puts "- start at (#{customer_position_X},#{customer_position_Y})"
+		direction.push("- start at (#{customer_position_X},#{customer_position_Y})")
         while customer_position_X < destination_X
 		    customer_position_X += 1
 		    puts "- go to (#{customer_position_X},#{customer_position_Y})"
 			check = 1
+			direction.push("- go to (#{customer_position_X},#{customer_position_Y})")
 		end
 		while customer_position_X > destination_X
 		    customer_position_X -= 1
 		    puts "- go to (#{customer_position_X},#{customer_position_Y})"
 		    check = 2
+			direction.push("- go to (#{customer_position_X},#{customer_position_Y})")
 		end
 		if check == 1
 		    if customer_position_Y > destination_Y
 			    puts "- turn right"
+				direction.push("- turn right")
 			elsif customer_position_Y < destination_Y
 			    puts "- turn left"
+				direction.push("- turn left")
 			end
 		elsif check == 2
 		    if customer_position_Y < destination_Y
 			    puts "- turn right"
+				direction.push("- turn right")
 			elsif customer_position_Y > destination_Y
 			    puts "- turn left"
+				direction.push("- turn left")
 			end
 		end
 		while customer_position_Y < destination_Y
 		    customer_position_Y += 1
 		    puts "- go to (#{customer_position_X},#{customer_position_Y})"
+			direction.push("- go to (#{customer_position_X},#{customer_position_Y})")
 		end
 		while customer_position_Y > destination_Y
 		    customer_position_Y -= 1
 		    puts "- go to (#{customer_position_X},#{customer_position_Y})"
+			direction.push("- go to (#{customer_position_X},#{customer_position_Y})")
 		end
 		puts "- finish at (#{customer_position_X},#{customer_position_Y})"
+		direction.push("- finish at (#{customer_position_X},#{customer_position_Y})")
 		puts ""
 		print "Confirm this reservation? (Y/N) : "
 		confirm = STDIN.gets.chomp
-		if (confirm == "Y" || confrim == "y")
-		    #Write to file
+		if (confirm == "Y" || confirm == "y")
+		    map[customer_position_X][customer_position_Y] = 2
+			map[customer_start_X][customer_start_Y] = 0
+		    File.open("history.txt","a") do |line|
+			    line.puts "\r" + "Driver Name : Andy"
+				line.puts "\r" + "Price : #{price}"
+				line.puts "Route :"
+				for i in 0..direction.length-1
+				    line.puts direction[i]
+				end
+				line.puts "--------------------------"
+			end
+		else 
+		    customer_position_X = customer_start_X
+			customer_position_Y = customer_start_Y
 		end
     elsif input == "3"
+	    puts "History : "
+	    f = File.open("history.txt", "r")
+		f.each_line do |line|
+		    puts line
+		end
+		f.close
     elsif input == "4"
         puts "Thank you for using our services..!"
         break
