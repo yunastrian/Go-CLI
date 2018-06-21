@@ -1,8 +1,34 @@
-
-Driver Name : Andy
-Price : 300
+Driver Name : Andy
+Price : 5400
 Route :
-- start at (1,2)
+- start at (12,6)
+- go to (11,6)
+- go to (10,6)
+- go to (9,6)
+- go to (8,6)
+- go to (7,6)
+- go to (6,6)
+- go to (5,6)
+- go to (4,6)
+- go to (3,6)
+- go to (2,6)
+- go to (1,6)
+- go to (0,6)
+- turn left
+- go to (0,5)
+- go to (0,4)
+- go to (0,3)
 - go to (0,2)
-- finish at (0,2)
+- go to (0,1)
+- go to (0,0)
+- finish at (0,0)
+--------------------------
+Driver Name : Andy
+Price : 900
+Route :
+- start at (0,0)
+- go to (0,1)
+- go to (0,2)
+- go to (0,3)
+- finish at (0,3)
 --------------------------

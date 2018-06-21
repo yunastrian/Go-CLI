@@ -4,7 +4,6 @@
 parameter = ARGV
 
 f = File.open("history.txt", "w")
-    f.puts ""
 f.close
 driver_position_X = Array.new
 driver_position_Y = Array.new
@@ -23,6 +22,8 @@ if parameter.length == 0
         end
     end
 	
+	customer_position_X = 0
+	customer_position_Y = 0
     loop do
         x = Random.rand(20)
         y = Random.rand(20)
@@ -75,14 +76,14 @@ end
 puts "Welcome to Go-CLI Application"
 puts "- Your Private Transport -"
 puts ""
-puts "Main Menu :"
-puts "1. Show map"
-puts "2. Order Go Ride"
-puts "3. View trips history"
-puts "4. Close the application"
-puts ""
 
 loop do
+    puts "Main Menu :"
+    puts "1. Show map"
+    puts "2. Order Go Ride"
+    puts "3. View trips history"
+    puts "4. Close the application"
+    puts ""	
     puts "Input the number"
     print "> "
     input = STDIN.gets.chomp
@@ -173,8 +174,8 @@ loop do
 		    map[customer_position_X][customer_position_Y] = 2
 			map[customer_start_X][customer_start_Y] = 0
 		    File.open("history.txt","a") do |line|
-			    line.puts "\r" + "Driver Name : Andy"
-				line.puts "\r" + "Price : #{price}"
+			    line.puts "Driver Name : Andy"
+				line.puts "Price : #{price}"
 				line.puts "Route :"
 				for i in 0..direction.length-1
 				    line.puts direction[i]
