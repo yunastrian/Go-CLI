@@ -1,6 +1,7 @@
 #Main Program
 parameter = ARGV
 
+driver_name = Array.new
 driver_position_X = Array.new
 driver_position_Y = Array.new
 if parameter.length == 0
@@ -92,6 +93,68 @@ loop do
         puts "1 = Driver position"
         puts "2 = Your position"
     elsif input == "2"
+        puts "Enter your coordinate destination"
+        print "X : "
+        destination_X = STDIN.gets.chomp.to_i
+        print "Y : "
+        destination_Y = STDIN.gets.chomp.to_i
+        distance_min = -1
+		driver_num = 0
+        for i in 0..driver_position_X.length-1
+            distance_temp = (driver_position_X[i]-customer_position_X).abs + (driver_position_Y[i]-customer_position_Y).abs
+			if distance_min < 0
+			    distance_min = distance_temp
+				driver_num = i
+			elsif distance_min > distance_temp
+			    driver_num = i
+				distance_min = distance_temp
+			end
+		end
+		
+		check = 0
+		price = 300*((destination_X-customer_position_X).abs + (destination_Y-customer_position_Y).abs)
+		puts "Driver Name : Andy"
+		puts "Price estimation : #{price}"
+		puts "Route : "
+        puts "- start at (#{customer_position_X},#{customer_position_Y})"
+        while customer_position_X < destination_X
+		    customer_position_X += 1
+		    puts "- go to (#{customer_position_X},#{customer_position_Y})"
+			check = 1
+		end
+		while customer_position_X > destination_X
+		    customer_position_X -= 1
+		    puts "- go to (#{customer_position_X},#{customer_position_Y})"
+		    check = 2
+		end
+		if check == 1
+		    if customer_position_Y > destination_Y
+			    puts "- turn right"
+			elsif customer_position_Y < destination_Y
+			    puts "- turn left"
+			end
+		elsif check == 2
+		    if customer_position_Y < destination_Y
+			    puts "- turn right"
+			elsif customer_position_Y > destination_Y
+			    puts "- turn left"
+			end
+		end
+		while customer_position_Y < destination_Y
+		    customer_position_Y += 1
+		    puts "- go to (#{customer_position_X},#{customer_position_Y})"
+		end
+		while customer_position_Y > destination_Y
+		    customer_position_Y -= 1
+		    puts "- go to (#{customer_position_X},#{customer_position_Y})"
+		end
+		puts "- finish at (#{customer_position_X},#{customer_position_Y})"
+		puts ""
+		print "Confirm this reservation? (Y/N) : "
+		confirm = STDIN.gets.chomp
+		if (confirm == "Y" || confrim == "y")
+		    #Write to file
+		end
     elsif input == "3"
     elsif input == "4"
         puts "Thank you for using our services..!"
